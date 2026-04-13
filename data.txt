@@ -1,0 +1,8 @@
+{
+    "23": {
+        "name": "hima",
+        "marks": {
+            "management": 45
+        }
+    }
+}

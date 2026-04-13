@@ -1,3 +1,6 @@
+from data.student import Student
+from data.database import load_data , save_data
+
 def menu():
     print("\n =========== Smart Student Management System ==============")
     print("1. Add Student")
@@ -9,6 +12,8 @@ def menu():
 
 
 def main():
+
+    data = load_data()
     
     while True :
         menu()
@@ -16,11 +21,33 @@ def main():
         choice = input("Enter the choice : ")
 
         if choice == "1" :
-            pass
+            sid = int(input("Enter Student ID : \n"))
+            name = input("Enter the Student Name : \n")
+
+            if sid in data : 
+                print("Student already exists")
+            else : 
+                data[sid] = {
+                    "name" : name,
+                    "marks" : {}
+                }  
+                save_data(data)  
+                print("Student added")
 
         elif choice == "2" :
-            pass
+            sid = int(input("Enter Student ID : \n"))
 
+            if sid not in data :
+                print("Student not found")
+                continue
+
+            subject = input("Enter Subject : \n")
+            mark = int(input("Enter Marks : "))
+
+            data[sid]["marks"][subject] = mark
+            save_data(data)
+            print("Marks added")
+            
         elif choice == "3" :
             pass
 
